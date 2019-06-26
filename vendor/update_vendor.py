@@ -111,7 +111,7 @@ def main():
     os.chdir(terraform_path)
     print("Obtaining latest dependancies using go get")
     os.system("go get")
-    update_terraform_plugin(gopath)
+    # update_terraform_plugin(gopath)
     move_everything_except(os.path.join(*[gopath, "src"]), exception_name=["github.com"],
                            dest_dir=os.path.join(*[terraform_path, "vendor"]))
     move_everything_except(os.path.join(*[gopath, "src", "github.com"]),
@@ -135,7 +135,7 @@ def main():
     move_everything_except(hashicorp_path, exception_name=["github.com"],
                            dest_dir=os.path.join(terraform_path, "vendor"))
     move_everything_except(os.path.join(hashicorp_path, "github.com"),
-                           exception_name=["google", "hashicorp"],
+                           exception_name=["google", "hashicorp", "pkg"],
                            dest_dir=os.path.join(*[terraform_path, "vendor", "github.com"]))
     move_everything_except(os.path.join(hashicorp_path, "github.com", "google"),
                            exception_name=["go-querystring"],
