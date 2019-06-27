@@ -59,7 +59,7 @@ resource "aviatrix_account" "test_account" {
 
 resource "aviatrix_gateway" "test_gw" {
         cloud_type = 1
-        account_name = "${aviatrix_account.test_account.account_name}"
+        account_name = aviatrix_account.test_account.account_name
         gw_name = "tfg-%[1]s"
         vpc_id = "%[5]s"
         vpc_reg = "%[6]s"
@@ -72,7 +72,7 @@ resource "aviatrix_gateway" "test_gw" {
 }
 
 resource "aviatrix_vpn_user_accelerator" "test_elb" {
-	elb_name = "${aviatrix_gateway.test_gw.elb_name}"
+	elb_name = aviatrix_gateway.test_gw.elb_name
 }
 	`, rName, os.Getenv("AWS_ACCOUNT_NUMBER"), os.Getenv("AWS_ACCESS_KEY"), os.Getenv("AWS_SECRET_KEY"),
 		os.Getenv("AWS_VPC_ID"), os.Getenv("AWS_REGION"), os.Getenv("AWS_VPC_NET"))

@@ -229,7 +229,7 @@ resource "aviatrix_account" "test_acc_aws" {
 
 resource "aviatrix_gateway" "test_gw_aws" {
 	cloud_type = 1
-	account_name = "${aviatrix_account.test_acc_aws.account_name}"
+	account_name = aviatrix_account.test_acc_aws.account_name
 	gw_name = "tf-testing-aws-%[1]s"
 	vpc_id = "%[5]s"
 	vpc_reg = "%[6]s"
@@ -251,7 +251,7 @@ resource "aviatrix_account" "test_acc_gcp" {
 
 resource "aviatrix_gateway" "test_gw_gcp" {
 	cloud_type = 4
-	account_name = "${aviatrix_account.test_acc_gcp.account_name}"
+	account_name = aviatrix_account.test_acc_gcp.account_name
 	gw_name = "tf-testing-gcp-%[1]s"
 	vpc_id = "%[4]s"
 	vpc_reg = "%[5]s"
@@ -275,7 +275,7 @@ resource "aviatrix_account" "test_acc_arm" {
 
 resource "aviatrix_gateway" "test_gw_arm" {
 	cloud_type = 8
-	account_name = "${aviatrix_account.test_acc_arm.account_name}"
+	account_name = aviatrix_account.test_acc_arm.account_name
 	gw_name = "tf-testing-arm-%[1]s"
 	vpc_id = "%[6]s"
 	vpc_reg = "%[7]s"

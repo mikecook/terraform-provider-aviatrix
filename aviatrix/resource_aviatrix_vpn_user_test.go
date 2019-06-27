@@ -65,7 +65,7 @@ resource "aviatrix_account" "test_account" {
 
 resource "aviatrix_gateway" "test_gw" {
 	cloud_type = 1
-	account_name = "${aviatrix_account.test_account.account_name}"
+	account_name = aviatrix_account.test_account.account_name
 	gw_name = "tfg-%s"
 	vpc_id = "%s"
 	vpc_reg = "%s"
@@ -78,8 +78,8 @@ resource "aviatrix_gateway" "test_gw" {
 }
 
 resource "aviatrix_vpn_user" "test_vpn_user" {
-    vpc_id = "${aviatrix_gateway.test_gw.vpc_id}"
-    gw_name = "${aviatrix_gateway.test_gw.elb_name}"
+    vpc_id = aviatrix_gateway.test_gw.vpc_id
+    gw_name = aviatrix_gateway.test_gw.elb_name
     user_name = "tfu-%s"
     user_email = "user@xyz.com"
 }
